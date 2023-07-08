@@ -7,6 +7,8 @@ import { splitKeys, randomKey } from "~/utils"
 
 export const localKey =
   import.meta.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY || ""
+export const localModel =
+  import.meta.env.MODEL || process.env.MODEL || "gpt-3.5-turbo"
 
 export const baseURL =
   process.env.VERCEL || process.env.NETLIFY || process.env.NOGFW
@@ -90,7 +92,7 @@ export const post: APIRoute = async context => {
       },
       method: "POST",
       body: JSON.stringify({
-        model: "gpt-3.5-turbo",
+        model: localModel,
         messages,
         temperature,
         // max_tokens: 4096 - tokens,
