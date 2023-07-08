@@ -3,7 +3,7 @@ import type { ParsedEvent, ReconnectInterval } from "eventsource-parser"
 import { createParser } from "eventsource-parser"
 import type { ChatMessage } from "~/types"
 import { countTokens } from "~/utils/tokens"
-import { splitKeys, randomKey } from "~/utils"
+import { randomKey, splitKeys } from "~/utils"
 
 export const localKey =
   import.meta.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY || ""
@@ -14,10 +14,10 @@ export const baseURL =
   process.env.VERCEL || process.env.NETLIFY || process.env.NOGFW
     ? "api.openai.com"
     : (
-        import.meta.env.OPENAI_API_BASE_URL ||
-        process.env.OPENAI_API_BASE_URL ||
-        "api.openai.com"
-      ).replace(/^https?:\/\//, "")
+      import.meta.env.OPENAI_API_BASE_URL ||
+      process.env.OPENAI_API_BASE_URL ||
+      "api.openai.com"
+    ).replace(/^https?:\/\//, "")
 
 const maxTokens = Number(
   import.meta.env.MAX_INPUT_TOKENS || process.env.MAX_INPUT_TOKENS
@@ -87,6 +87,7 @@ export const post: APIRoute = async context => {
     const encoder = new TextEncoder()
     const decoder = new TextDecoder()
 
+    console.log("body", body)
     const rawRes = await fetch(`https://${baseURL}/v1/chat/completions`, {
       headers: {
         "Content-Type": "application/json",

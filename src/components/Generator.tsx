@@ -232,6 +232,7 @@ export default function (props: {
     const response = await fetch("/api", {
       method: "POST",
       body: JSON.stringify({
+        model:setting().model,
         messages: setting().continuousDialogue
           ? [...messageList().slice(0, -1), message]
           : [message],
