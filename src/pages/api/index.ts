@@ -32,12 +32,14 @@ export const post: APIRoute = async context => {
       messages,
       key = localKey,
       temperature = 0.6,
-      password
+      password,
+      model = localModel
     } = body as {
       messages?: ChatMessage[]
       key?: string
       temperature?: number
-      password?: string
+      password?: string,
+      model?: string
     }
 
     if (pwd && pwd !== password) {
@@ -92,7 +94,7 @@ export const post: APIRoute = async context => {
       },
       method: "POST",
       body: JSON.stringify({
-        model: localModel,
+        model: model,
         messages,
         temperature,
         // max_tokens: 4096 - tokens,

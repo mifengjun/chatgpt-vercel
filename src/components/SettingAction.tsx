@@ -13,6 +13,13 @@ export default function SettingAction(props: {
 }) {
   const [shown, setShown] = createSignal(false)
   const [copied, setCopied] = createSignal(false)
+
+  const options = [
+    { value: 'gpt-4', label: 'gpt-4' },
+    { value: 'gpt-3.5-turbo-16k', label: 'gpt-3.5-turbo-16k' },
+    { value: 'gpt-3.5-turbo', label: 'gpt-3.5-turbo' },
+  ];
+
   return (
     <div class="text-sm text-slate-7 dark:text-slate mb-2">
       <Show when={shown()}>
@@ -28,6 +35,24 @@ export default function SettingAction(props: {
               })
             }}
           />
+        </SettingItem>
+        <SettingItem icon="i-carbon:model-alt" label="模型">
+          <select
+            value={props.setting().model}
+            class="max-w-150px ml-1em px-1 text-slate-7 dark:text-slate rounded-sm bg-slate bg-op-15 focus:bg-op-20 focus:ring-0 focus:outline-none"
+            onInput={e => {
+              props.setSetting({
+                ...props.setting(),
+                model: (e.target as HTMLInputElement).value
+              })
+            }}
+          >
+            {options.map((option, index) => (
+              <option key={index} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </SettingItem>
         <SettingItem icon="i-carbon:api" label="OpenAI API Key">
           <input

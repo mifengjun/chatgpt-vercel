@@ -4,7 +4,8 @@ export const setting = {
   openaiAPIKey: "",
   openaiAPITemperature: 60,
   password: "",
-  systemRule: ""
+  systemRule: "",
+  model: ""
 }
 
 export const message = `- 由 [OpenAI API (gpt-3.5-turbo)](https://platform.openai.com/docs/guides/chat) 和 [Vercel](http://vercel.com/) 提供支持。
