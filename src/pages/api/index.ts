@@ -87,7 +87,6 @@ export const post: APIRoute = async context => {
     const encoder = new TextEncoder()
     const decoder = new TextDecoder()
 
-    console.log("body", body)
     const rawRes = await fetch(`https://${baseURL}/v1/chat/completions`, {
       headers: {
         "Content-Type": "application/json",
