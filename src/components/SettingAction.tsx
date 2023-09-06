@@ -14,8 +14,8 @@ export default function SettingAction(props: {
   const [shown, setShown] = createSignal(false)
   const [copied, setCopied] = createSignal(false)
 
+  //     { value: 'gpt-4', label: 'gpt-4' },
   const options = [
-    { value: 'gpt-4', label: 'gpt-4' },
     { value: 'gpt-3.5-turbo-16k', label: 'gpt-3.5-turbo-16k' },
     { value: 'gpt-3.5-turbo', label: 'gpt-3.5-turbo' },
   ];
